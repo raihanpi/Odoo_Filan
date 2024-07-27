@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>    
+        <record id="mitra_detail_view_form" model="ir.ui.view">
+            <field name="name">mitra_detail.view.form</field>
+            <field name="model">cnt_trial.mitra_detail</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <field name="partner_id" />
+                            <field name="mip_ids"/>
+                            <field name="spp_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>   
+        <record id="mitra_detail_view_tree" model="ir.ui.view">
+            <field name="name">mitra_detail.view.tree</field>
+            <field name="model">cnt_trial.mitra_detail</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="mip_ids" />
+                </tree>
+            </field>
+        </record> 
+        <record id="mitra_detail_view_kanban" model="ir.ui.view">
+            <field name="name">mitra_detail.view.kanban</field>
+            <field name="model">cnt_trial.mitra_detail</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <field name="partner_id" />
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="mitra_detail_view_search" model="ir.ui.view">
+            <field name="name">mitra_detail.view.search</field>
+            <field name="model">cnt_trial.mitra_detail</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    
+                </search>
+            </field>
+        </record>
+        <record id="mitra_detail_action" model="ir.actions.act_window">
+            <field name="name">Detail</field>
+            <field name="res_model">cnt_trial.mitra_detail</field>
+            <field name="view_mode">tree,form</field>
+                
+        </record>
+        <menuitem
+            id="mitra_detail_menu"
+            parent="cnt_trial_mitra_menu"
+            name="Detail"
+            sequence="2"
+            action="mitra_detail_action"
+        />     
+    
+    </data>
+</odoo>

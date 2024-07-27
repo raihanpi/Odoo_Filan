@@ -1,7 +1,10 @@
-version: '2'
+#version: '2'
 services:
   odoo:
-    image: odoo:15
+    image: odoo:16
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     ports:
       - "8069:8069"
       - "8072:8072"
@@ -12,10 +15,10 @@ services:
       - ./custom_modules:/mnt/extra-addons
       - ./etc:/etc/odoo
   db:
-    image: postgres:11
+    image: postgres:latest
     command: postgres -c 'max_connections=300'
     ports:
-      - "5432:5432"
+      - "2300:5432"
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo

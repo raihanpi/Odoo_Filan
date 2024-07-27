@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+cnt_trial.access_cnt_trial_mitra,access_cnt_trial_mitra,cnt_trial.model_cnt_trial_mitra,base.group_user,1,1,1,1
+cnt_trial.access_cnt_trial_mitra_detail,access_cnt_trial_mitra_detail,cnt_trial.model_cnt_trial_mitra_detail,base.group_user,1,1,1,1

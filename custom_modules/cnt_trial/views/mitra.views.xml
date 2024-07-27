@@ -1,0 +1,212 @@
+<odoo>
+    <data>
+        <record id="res_partner_mitra_form" model="ir.ui.view">
+            <field name="name">res.partner.mitra.form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <!-- <field name="logo" nolabel="1" widget="image" class="oe_avatar" options="{'preview_image': ';avatar_128'}"/> -->
+                        <field name="image_1920" nolabel="1" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;avatar_128&quot;}"/>
+                        <field name="partner_type" nolabel="1" string="Tipe Partner" widget="selection_badge"/>          
+                        <div class="oe_title mb24">
+                            <h1>
+                            <!-- <field name="partner_id" string="Nama Mitra"/> -->
+                            <field name="name" string="Nama"/>
+                            </h1>        
+                            </div>
+                            <group>
+                                <group>
+                                    <field name="phone" string="Phone"/>
+                                    <field name="mobile" string="Mobile"/>
+                                    <field name="email" string="Email"/>
+                                    <field name="website" string="Website"/>
+                                    <field name="fundraiser_id" string="Fundraiser"/>
+                                    <field name="mitradetail_ids"/>
+
+                                </group>
+                                <group>
+                                    <field name="donasi_spp" string="Donasi"/>
+                                    <field name="donasi_total" string="Total Donasi"/> 
+                                    
+                                </group>
+                            </group>  
+                            <notebook>
+                                <page string="Detail">
+                                
+                                </page>  
+                            </notebook>
+                         </sheet>
+                         <div class ="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                         </div>
+                </form>
+            </field>
+        </record>
+        <record id="res_partner_mitra_tree" model="ir.ui.view">
+            <field name="name">res.partner.mitra.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="">
+                    <field name="name" string="Nama"/>
+                    <field name="phone" string="Phone"/>
+                    <field name="mobile" string="Mobile"/>
+                    <field name="email" string="Email"/>
+                    <field name="website" string="Website"/>
+                    <field name="fundraiser_id" string="Fundraiser"/>
+                </tree>
+            </field>
+        </record>
+        <record id="res_partner_mitra_kanban" model="ir.ui.view">
+            <field name="name">res.partner.mitra.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban" sample="1">
+                    <field name="id"/>
+                    <field name="color"/>
+                    <field name="display_name"/>
+                    <field name="title"/>
+                    <field name="email"/>
+                    <field name="parent_id"/>
+                    <field name="is_company"/>
+                    <field name="function"/>
+                    <field name="phone"/>
+                    <field name="street"/>
+                    <field name="street2"/>
+                    <field name="zip"/>
+                    <field name="city"/>
+                    <field name="country_id"/>
+                    <field name="mobile"/>
+                    <field name="state_id"/>
+                    <field name="category_id"/>
+                    <field name="avatar_128"/>
+                    <field name="type"/>
+                    <field name="active"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban">
+                                <t t-if="!record.is_company.raw_value">
+                                    <t t-set="background_image" t-value="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
+                                    <div class="o_kanban_image_fill_left d-none d-md-block" t-attf-style="background-image:url('#{background_image}')">
+                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'avatar_128', record.parent_id.raw_value)"/>
+                                    </div>
+                                    <div class="o_kanban_image d-md-none" t-attf-style="background-image: url(#{background_image})">
+                                        <img class="o_kanban_image_inner_pic" t-if="record.parent_id.raw_value" t-att-alt="record.parent_id.value" t-att-src="kanban_image('res.partner', 'avatar_128', record.parent_id.raw_value)"/>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div class="o_kanban_image_fill_left o_kanban_image_full" t-attf-style="background-image: url(#{kanban_image('res.partner', 'avatar_128', record.id.raw_value)})" role="img"/>
+                                </t>
+                                <div class="ribbon ribbon-top-right" attrs="{'invisible': [('active', '=', True)]}">
+                                    <span class="bg-danger">Archived</span>
+                                </div>
+                                <div class="oe_kanban_details d-flex flex-column justify-content-between">
+                                    <div>
+                                        <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name" invisible="1"/></strong>
+                                        <strong class="o_kanban_record_title oe_partner_heading"><field name="translated_display_name"/></strong>
+                                        <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                        <ul>
+                                            <li t-if="record.parent_id.raw_value and !record.function.raw_value"><field name="parent_id"/></li>
+                                            <li t-elif="!record.parent_id.raw_value and record.function.raw_value"><field name="function"/></li>
+                                            <li t-elif="record.parent_id.raw_value and record.function.raw_value"><field name="function"/> at <field name="parent_id"/></li>
+                                            <li t-if="record.city.raw_value or record.country_id.raw_value">
+                                                <t t-if="record.city.raw_value"><field name="city"/><t t-if="record.country_id.raw_value">, </t></t>
+                                                <t t-if="record.country_id.raw_value"><field name="country_id"/></t>
+                                            </li>
+                                            <li t-if="record.email.raw_value" class="o_text_overflow"><field name="email"/></li>
+                                        </ul>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left"/>
+                                        <div class="oe_kanban_bottom_right"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- <record id="cnt_trial_mitra_search" model="ir.ui.view">
+            <field name="name">cnt_trial.mitra.search</field>
+            <field name="model">cnt_trial.mitra</field>
+            <field name="arch" type="xml">
+                <search string="">
+                    
+                </search>
+            </field>
+        </record> -->
+        
+        <record id="res_partner_mitra_action" model="ir.actions.act_window">
+            <field name="name">Mitra</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_ids" eval="[(5,0,0),
+                (0,0,{'view_mode':'tree','view_id': ref('res_partner_mitra_tree')}),
+                (0,0,{'view_mode':'form','view_id': ref('res_partner_mitra_form')}),
+                (0,0,{'view_mode':'kanban','view_id': ref('res_partner_mitra_kanban')})]" />
+        
+        </record>
+        <record id="view_log_note_tree" model="ir.ui.view">
+            <field name="name">log.note.tree</field>
+            <field name="model">log.note</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="record_id"/>
+                    <field name="model_id"/>
+                    <field name="note"/>
+                    <field name="user_id"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_log_note_form" model="ir.ui.view">
+            <field name="name">log.note.form</field>
+            <field name="model">log.note</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="record_id"/>
+                            <field name="model_id"/>
+                            <field name="note"/>
+                            <field name="create_date"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_log_note" model="ir.actions.act_window">
+            <field name="name">Log Notes</field>
+            <field name="res_model">log.note</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_log_note_tree"/>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem 
+            id="menu_log_note" 
+            name="Log Notes" 
+            parent="base.menu_custom"
+            action="action_log_note"/>
+        
+        <menuitem
+            id="cnt_trial_mitra_menu"
+            name="Mitra"
+            sequence="1"/>
+        <menuitem 
+            id="cnt_trial_mitra"
+            parent="cnt_trial_mitra_menu"
+            name="Mitra"
+            sequence="1"
+            action="res_partner_mitra_action"
+        />        
+    </data>
+</odoo>
