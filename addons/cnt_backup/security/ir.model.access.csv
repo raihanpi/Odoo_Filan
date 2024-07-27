@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+cnt_backup.access_cnt_backup_backup,access_cnt_backup_backup,cnt_backup.model_cnt_backup_backup,base.group_user,1,1,1,1
+cnt_backup.access_cnt_backup_kota,access_cnt_backup_kota,cnt_backup.model_cnt_backup_kota,base.group_user,1,1,1,1
+cnt_backup.access_cnt_backup_provinsi,access_cnt_backup_provinsi,cnt_backup.model_cnt_backup_provinsi,base.group_user,1,1,1,1

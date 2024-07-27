@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="cnt_backup.kota_form" model="ir.ui.view">
+            <field name="name">cnt_backup.kota_form</field>
+            <field name="model">cnt_backup.kota</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="kota" string="Kota"/>
+                            <field name="provinsi" string="Provinsi"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cnt_backup_kota_action" model="ir.actions.act_window">
+            <field name="name">kota</field>
+            <field name="res_model">cnt_backup.kota</field>
+            <field name="view_mode">tree,form,kanban,graph</field>
+        </record>
+        
+        <record id="cnt_backup_kota_tree" model="ir.ui.view">
+            <field name="name">cnt_backup.kota_tree</field>
+            <field name="model">cnt_backup.kota</field>
+            <field name="arch" type="xml">
+                <tree default_order='kota asc' limit="20">
+                        <field name="kota" string="kota" optional="show"/>
+                        <field name="provinsi" string="Provinsi" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- <record id="cnt_backup_backup_kanban" model="ir.ui.view">
+            <field name="name">cnt_backup.backup_kanban</field>
+            <field name="model">cnt_backup.backup</field>
+            <field name="arch" type="xml">
+                <kanban limit="20">
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <strong><field name="name" /></strong>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="cnt_backup_backup_search" model="ir.ui.view">
+            <field name="name">cnt_backup.backup_search</field>
+            <field name="model">cnt_backup.backup</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" optional="show"/>
+                </search>
+            </field>
+        </record>
+
+        <menuitem id="cnt_backup_backup" name="Backup" sequence="1" /> -->
+        <menuitem id="kota" name="kota" sequence="2" action="cnt_backup_kota_action" parent="cnt_backup_backup"/>
+    </data>
+</odoo>

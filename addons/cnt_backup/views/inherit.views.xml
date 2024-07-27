@@ -1,0 +1,14 @@
+<!-- <odoo>
+    <data>
+        <record id="sosmed" model="ir.ui.view">
+            <field name="name">cnt_backup_social_media.form.inherited</field>
+            <field name="model">calendar.event</field>
+            <field name="inherit" ref="calendar.view_calendar_event_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_ids']" position="after">
+            <field name="nama"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo> -->
