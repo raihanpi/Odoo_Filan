@@ -7,13 +7,13 @@ class Mitra(models.Model):
     #      'res.partner'
     # ]
 
-    name = fields.Char(string='Nama')
-    partner_id = fields.Many2one(string='Nama Mitra', comodel_name='res.partner')
-    phone= fields.Char(string='Phone')
-    mobile= fields.Char(string='Mobile')
-    email= fields.Char(string='Email')
-    website= fields.Char(string='Website')
-    fundraiser_id= fields.Many2one(string='Fundraiser', comodel_name='res.users')
+    name = fields.Char(string='Nama', tracking=True)
+    partner_id = fields.Many2one(string='Nama Mitra', comodel_name='res.partner', tracking=True)
+    phone= fields.Char(string='Phone', tracking=True)
+    mobile= fields.Char(string='Mobile', tracking=True)
+    email= fields.Char(string='Email', tracking=True)
+    website= fields.Char(string='Website', tracking=True)
+    fundraiser_id= fields.Many2one(string='Fundraiser', comodel_name='res.users', tracking=True)
     # logo= fields.Binary()
     partner_type= fields.Selection(selection=[
      ('retail' ,'Retail') ,
@@ -28,21 +28,21 @@ class Mitra(models.Model):
     # donasi_ids= fields.One2many (string="List Donasi")
 
     #hasil dari donasi spp_ids
-    donasi_spp= fields.Float(string='Donasi') 
+    donasi_spp= fields.Float(string='Donasi', tracking=True) 
    
     #total donasi dari donasi_spp
-    donasi_total=fields.Float(string='Total Donasi')
-    implementasi_project=fields.Char(string='Implementasi Project')
-    rab_realisasi=fields.Char(string='RAB vs Realisasi')
-    laporan_project=fields.Binary(string='Laporan Project')
+    donasi_total=fields.Float(string='Total Donasi', tracking=True)
+    implementasi_project=fields.Char(string='Implementasi Project', tracking=True)
+    rab_realisasi=fields.Char(string='RAB vs Realisasi', tracking=True)
+    laporan_project=fields.Binary(string='Laporan Project', tracking=True)
     
     # Many2many
     #mip_ids = fields.Many2many(comodel_name="cnt_pm.mip", string="MIP")
-    spp_ids = fields.Many2many(comodel_name="cnt_pm.spp", string="SPP")
-    mipro_ids= fields.Many2many (comodel_name="cnt_pm.mipro",string=" MIPRO")
-    mil_ids= fields.Many2many(comodel_name="cnt_pm.mil", string="MIL")
-    proposal_ids= fields.Many2many(comodel_name="cnt_pm.proposal", string="Proposal")
-    donasi_ids= fields.Many2many(comodel_name="cnt_pm.donasi", string="List Donasi")
+    spp_ids = fields.Many2many(comodel_name="cnt_pm.spp", string="SPP", tracking=True)
+    mipro_ids= fields.Many2many (comodel_name="cnt_pm.mipro",string=" MIPRO", tracking=True)
+    mil_ids= fields.Many2many(comodel_name="cnt_pm.mil", string="MIL", tracking=True)
+    proposal_ids= fields.Many2many(comodel_name="cnt_pm.proposal", string="Proposal", tracking=True)
+    donasi_ids= fields.Many2many(comodel_name="cnt_pm.donasi", string="List Donasi", tracking=True)
     
     #Function
    

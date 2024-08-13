@@ -8,10 +8,10 @@
                     <sheet>
                         <!-- <field name="logo" nolabel="1" widget="image" class="oe_avatar" options="{'preview_image': ';avatar_128'}"/> -->
                         <field name="image_1920" nolabel="1" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;avatar_128&quot;}"/>
-                        <field name="partner_type" nolabel="1" string="Tipe Partner" widget="selection_badge"/>          
+                        <field name="partner_type" nolabel="1" string="Tipe Partner" widget="radio" options="{'horizontal': true}"/>          
                         <div class="oe_title mb24">
                             <h1>
-                            <!-- <field name="partner_id" string="Nama Mitra"/> -->
+                            <field name="partner_id" string="Nama Mitra"/>
                             <field name="name" string="Nama"/>
                             </h1>        
                             </div>
@@ -22,24 +22,31 @@
                                     <field name="email" string="Email"/>
                                     <field name="website" string="Website"/>
                                     <field name="fundraiser_id" string="Fundraiser"/>
-                                    <field name="mitradetail_ids"/>
-
                                 </group>
                                 <group>
-                                    <field name="donasi_spp" string="Donasi"/>
+                                    <!-- <field name="donasi_spp" string="Donasi"/> -->
                                     <field name="donasi_total" string="Total Donasi"/> 
                                     
                                 </group>
                             </group>  
                             <notebook>
                                 <page string="Detail">
-                                
+                                    <field name="proposal_ids"> 
+                                        <tree editable="top" create="0" delete="0">
+                                            <field name="mip_id" style="50%" />
+                                            <field name="proposal_normalize_id" string="Proposal" style="50%"/>
+                                            <field name="mil_ids" widget="many2many_tags" optional="show" style="50%"/>
+                                            <field name="mipro_ids" widget="many2many_tags" optional="show" style="50%"/>
+                                            <!-- <field name="donasi_ids" widget="many2many_tags" optional="show" style="50%"/> -->
+                                            <field name="spp_ids" widget="many2many_tags" optional="show" style="50%"/>
+                                        </tree>
+                                    </field>
                                 </page>  
                             </notebook>
                          </sheet>
                          <div class ="oe_chatter">
-                            <field name="message_follower_ids" widget="mail_followers"/>
-                            <field name="message_ids" widget="mail_thread"/>
+                            <field name="message_follower_ids"/>
+                            <field name="message_ids"/>
                          </div>
                 </form>
             </field>
@@ -128,6 +135,7 @@
                 </kanban>
             </field>
         </record>
+       
         <!-- <record id="cnt_trial_mitra_search" model="ir.ui.view">
             <field name="name">cnt_trial.mitra.search</field>
             <field name="model">cnt_trial.mitra</field>
@@ -148,54 +156,6 @@
                 (0,0,{'view_mode':'kanban','view_id': ref('res_partner_mitra_kanban')})]" />
         
         </record>
-        <record id="view_log_note_tree" model="ir.ui.view">
-            <field name="name">log.note.tree</field>
-            <field name="model">log.note</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="name"/>
-                    <field name="record_id"/>
-                    <field name="model_id"/>
-                    <field name="note"/>
-                    <field name="user_id"/>
-                    <field name="create_date"/>
-                </tree>
-            </field>
-        </record>
-
-        <!-- Form View -->
-        <record id="view_log_note_form" model="ir.ui.view">
-            <field name="name">log.note.form</field>
-            <field name="model">log.note</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <field name="name"/>
-                            <field name="record_id"/>
-                            <field name="model_id"/>
-                            <field name="note"/>
-                            <field name="create_date"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <!-- Action -->
-        <record id="action_log_note" model="ir.actions.act_window">
-            <field name="name">Log Notes</field>
-            <field name="res_model">log.note</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_log_note_tree"/>
-        </record>
-
-        <!-- Menu Item -->
-        <menuitem 
-            id="menu_log_note" 
-            name="Log Notes" 
-            parent="base.menu_custom"
-            action="action_log_note"/>
         
         <menuitem
             id="cnt_trial_mitra_menu"
@@ -206,7 +166,6 @@
             parent="cnt_trial_mitra_menu"
             name="Mitra"
             sequence="1"
-            action="res_partner_mitra_action"
-        />        
+            action="res_partner_mitra_action"/>        
     </data>
 </odoo>

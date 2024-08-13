@@ -1,0 +1,7 @@
+/* Style the container of radio buttons to display vertically */
+.o_radio {
+    display: flex;
+    flex-direction: row; /* Stack radio buttons vertically */
+}
+
+

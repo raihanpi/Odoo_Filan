@@ -14,11 +14,14 @@
         # 'views/asset.views.xml'
     ],
 
-    # 'asset' :{
-    #     'web.assets_backend' :[
-    #         'cnt_trial/static/css/style.css'
-    #     ],
-    # },
+    'asset' :{
+        'web.assets_backend' :[
+            'cnt_trial/static/css/style.css'
+            'cnt_trial/static/js/many2many_tags_field.js',
+            'cnt_trial/static/js/systray.js',
+            'cnt_trial/static/xml/systray.xml',
+        ],
+    },
     
     'auto_install': False,
     'application': False,

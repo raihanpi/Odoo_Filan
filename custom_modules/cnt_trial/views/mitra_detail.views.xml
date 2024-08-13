@@ -9,9 +9,25 @@
                     <sheet>
                         <group>
                             <field name="partner_id" />
-                            <field name="mip_ids"/>
-                            <field name="spp_id"/>
+                            <field name="proposal_id" />      
                         </group>
+                        <notebook>
+                            <page string="Mip">
+                                <field name="mip_id"/>                        
+                            </page>  
+                            <page string="Mil">
+                                <field name="mil_ids"/>
+                            </page>
+                            <page string="Mipro">
+                                <field name="mipro_ids"/>
+                            </page>
+                            <page string="Donasi">
+                                <field name="donasi_ids"/>
+                            </page>
+                            <page string="SPP">
+                                <field name="spp_ids"/>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
@@ -21,7 +37,8 @@
             <field name="model">cnt_trial.mitra_detail</field>
             <field name="arch" type="xml">
                 <tree string="">
-                    <field name="mip_ids" />
+                    <field name="partner_id" />
+                    <!-- <field name="mip_ids" /> -->
                 </tree>
             </field>
         </record> 
@@ -41,6 +58,7 @@
         <record id="mitra_detail_view_search" model="ir.ui.view">
             <field name="name">mitra_detail.view.search</field>
             <field name="model">cnt_trial.mitra_detail</field>
+            
             <field name="arch" type="xml">
                 <search string="">
                     
